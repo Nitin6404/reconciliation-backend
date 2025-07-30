@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:15
+    container_name: postgresdb
+    restart: always
+    environment:
+      POSTGRES_DB: ledgerdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: your_secure_password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  fastapi:
+    build: .
+    container_name: fastapi-app
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+volumes:
+  pgdata:

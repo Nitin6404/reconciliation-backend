@@ -1,3 +1,10 @@
+import os
+from dotenv import load_dotenv
+from pathlib import Path
+
+env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
+
 from fastapi import FastAPI, Depends, File, UploadFile
 from .database import SessionLocal, engine, Base
 from .email_reader import fetch_receipt_pdfs
