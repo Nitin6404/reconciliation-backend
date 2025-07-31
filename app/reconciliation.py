@@ -12,8 +12,11 @@ def reconcile_transactions(bank_txns, db: Session):
     for l in ledger_txns:
         found_match = False
         for b in only_in_bank:
-            if (str(l.date) == b['date'] and 
-                abs(float(l.amount) - float(b['amount'])) < 0.01):
+            if (
+                str(l.date) == b['date']
+                and abs(float(l.amount) - float(b['amount'])) < 0.01
+                and (l.transaction_id == b.get('transaction_id') or l.description in b['description'])
+            ):
                 matched.append({
                     "date": l.date,
                     "description": l.description,

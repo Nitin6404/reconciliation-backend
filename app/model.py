@@ -9,6 +9,10 @@ class Ledger(Base):
     amount = Column(Float)
     vendor = Column(String)
     message_id = Column(String, unique=True, nullable=True)
+    transaction_id = Column(String, nullable=True)  # ✅ New
+    payment_method = Column(String, nullable=True)  # ✅ New
+    last_digits = Column(String, nullable=True)     # ✅ New
+    currency = Column(String, default="INR")        # ✅ New
 
     __table_args__ = (
         UniqueConstraint('message_id', name='uix_message_id'),

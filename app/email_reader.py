@@ -29,21 +29,36 @@ class ReceiptInfo(typing.TypedDict):
     amount: float
     description: str
     vendor: str
+    transaction_id: str
+    payment_method: str
+    last_digits: str
+    currency: str
 
 def parse_with_gemini_pdf(file_data: bytes) -> dict | None:
     try:
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
             temp_file.write(file_data)
             temp_path = temp_file.name
+        logger.info(f"Gemini parsed PDF successfully: {temp_path}")
 
         uploaded = client.files.upload(file=temp_path)
+        logger.info(f"Gemini uploaded PDF successfully: {uploaded}")
 
-        prompt = """You are a financial receipt parser AI. Given the PDF receipt below, extract the following fields:
-        - date: in YYYY-MM-DD
-        - amount: float (no symbols)
-        - description: What the payment was for
-        - vendor: Razorpay, Stripe, Amazon, etc.
-        Return JSON with only these keys."""
+        prompt = """You are a financial receipt parser AI.
+
+            From the PDF receipt, extract and return the following JSON:
+
+            - date: Date of transaction in YYYY-MM-DD
+            - amount: Total transaction amount as a float
+            - description: Payment purpose (e.g., Uber Ride, Amazon Order)
+            - vendor: Platform or merchant name (e.g., Razorpay, Stripe, Flipkart)
+            - transaction_id: The transaction or invoice number
+            - payment_method: The payment method used (e.g., UPI, Visa, NetBanking)
+            - last_digits: Last 4 digits of card/UPI used if available
+            - currency: ISO currency code (e.g., INR, USD)
+
+            Return only valid JSON.
+            """
 
         response = client.models.generate_content(
             model="gemini-2.5-flash",
@@ -83,20 +98,25 @@ def extract_data_from_pdf(file_data: bytes) -> dict:
             "date": str(datetime.today().date()),
             "description": lines[0][:100] if lines else "Unknown",
             "amount": amount,
-            "vendor": "Unknown"
+            "vendor": "Unknown",
+            "transaction_id": "Unknown",
+            "payment_method": "Unknown",
+            "last_digits": "Unknown",
+            "currency": "INR"
         }
     except Exception as e:
         logger.error("Fallback failed:", e)
         return None
 
 def authenticate_gmail():
-    token_path = 'token.json'
-    if os.path.exists(token_path):
-        return Credentials.from_authorized_user_file(token_path, SCOPES)
-    flow = InstalledAppFlow.from_client_secrets_file("app/credentials.json", SCOPES)
-    creds = flow.run_local_server(port=0)
-    with open(token_path, 'w') as token:
-        token.write(creds.to_json())
+    # token_path = 'token.json'
+    # if os.path.exists(token_path):
+    #     return Credentials.from_authorized_user_file(token_path, SCOPES)
+    # flow = InstalledAppFlow.from_client_secrets_file("app/credentials.json", SCOPES)
+    # creds = flow.run_local_server(port=0)
+    creds = Credentials.from_authorized_user_info(json.loads(os.getenv("GOOGLE_TOKEN_JSON")), scopes=SCOPES)
+    # with open(token_path, 'w') as token:
+    #     token.write(creds.to_json())
     return creds
 
 def fetch_receipt_pdfs():
@@ -121,7 +141,9 @@ def fetch_receipt_pdfs():
     for sender in senders:
         query = f"from:{sender} has:attachment filename:pdf"
         results = service.users().messages().list(userId='me', q=query).execute()
+        logger.info(f"Found {len(results.get('messages', []))} messages")
         messages = results.get('messages', [])
+        logger.info(f"Processing {len(messages)} messages")
 
         for msg in messages:
             if msg['id'] in existing_ids:
@@ -138,13 +160,18 @@ def fetch_receipt_pdfs():
 
                     try:
                         parsed = parse_with_gemini_pdf(file_data) or extract_data_from_pdf(file_data)
+                        logger.info(f"Gemini parsed PDF successfully: {parsed}")
                         if parsed:
                             entry = Ledger(
-                                date=parsed['date'],
-                                description=parsed['description'],
-                                amount=parsed['amount'],
-                                vendor=parsed['vendor'],
-                                message_id=msg['id']  # ✅ Include this!
+                                date=parsed["date"],
+                                amount=parsed["amount"],
+                                description=parsed["description"],
+                                vendor=parsed["vendor"],
+                                transaction_id=parsed.get("transaction_id"),
+                                payment_method=parsed.get("payment_method"),
+                                last_digits=parsed.get("last_digits"),
+                                currency=parsed.get("currency", "INR"),
+                                message_id=msg['id']
                             )
                             db.add(entry)
                     except Exception as e:
@@ -156,18 +183,25 @@ def fetch_receipt_pdfs():
 def parse_and_store_receipt(file_data: bytes, db):
     try:
         result = parse_with_gemini_pdf(file_data)
+        logger.info(f"Gemini parsed PDF successfully: {result}")
     except Exception as e:
         logger.error("Gemini failed:", e)
         result = extract_data_from_pdf(file_data)
+        logger.info(f"Fallback parsed PDF successfully: {result}")
 
     if not result:
         return None
 
     entry = Ledger(
-        date=result['date'],
-        description=result['description'],
-        amount=result['amount'],
-        vendor=result['vendor']
+        date=result["date"],
+        amount=result["amount"],
+        description=result["description"],
+        vendor=result["vendor"],
+        transaction_id=result.get("transaction_id"),
+        payment_method=result.get("payment_method"),
+        last_digits=result.get("last_digits"),
+        currency=result.get("currency", "INR"),
+        message_id=msg['id']
     )
     db.add(entry)
     db.commit()
@@ -176,5 +210,10 @@ def parse_and_store_receipt(file_data: bytes, db):
         "date": entry.date,
         "description": entry.description,
         "amount": entry.amount,
-        "vendor": entry.vendor
+        "vendor": entry.vendor,
+        "transaction_id": entry.transaction_id,
+        "payment_method": entry.payment_method,
+        "last_digits": entry.last_digits,
+        "currency": entry.currency,
+        "message_id": entry.message_id
     }

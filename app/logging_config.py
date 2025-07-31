@@ -1,13 +1,18 @@
+# app/logging_config.py
 import logging
-from pathlib import Path
+import sys
 
-LOG_FILE = Path(__file__).parent / "app.log"
+logger = logging.getLogger("ledger")
+logger.setLevel(logging.INFO)
 
-logging.basicConfig(
-    filename=LOG_FILE,
-    filemode="a",
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    level=logging.INFO,
+# Clear any default handlers
+logger.handlers.clear()
+
+# Console handler
+console_handler = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter(
+    '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
 )
-
-logger = logging.getLogger(__name__)
+console_handler.setFormatter(formatter)
+logger.addHandler(console_handler)

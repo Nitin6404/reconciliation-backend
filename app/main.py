@@ -16,6 +16,7 @@ from typing import List
 from io import StringIO
 from .reconciliation import reconcile_transactions
 from fastapi.middleware.cors import CORSMiddleware
+from .utils.csv_parser import parse_csv_file
 
 
 
@@ -57,16 +58,11 @@ def upload_bank_statement(
     file: UploadFile = File(...),
     db: SessionLocal = Depends(get_db)
 ):
-    content = file.file.read().decode("utf-8")
-    reader = csv.DictReader(StringIO(content))
-
-    bank_txns = []
-    for row in reader:
-        bank_txns.append({
-            "date": row.get("Date"),
-            "description": row.get("Description"),
-            "amount": float(row.get("Amount")),
-        })
+    file_bytes = file.file.read()
+    try:
+        bank_txns = parse_csv_file(file_bytes)
+    except ValueError as e:
+        return {"error": str(e)}
 
     reconciliation_result = reconcile_transactions(bank_txns, db)
     return {"reconciliation": reconciliation_result}
