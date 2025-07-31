@@ -1,0 +1,73 @@
+2025-07-31 20:00:43,811 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-31 20:00:47,579 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:00:49,363 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH88AYgaABjuD_pZpk9XoBFJ74t4KQZtkJ-X14GEqgBnjdTLEPySxpOWyJevkjDXiB_LzEtuRxfnEC61OxUGGNRvrTR0f-5GVneitvxvFlgI&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:00:49,366 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:00:53,926 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:00:53,929 - INFO - AFC remote call 1 is done.
+2025-07-31 20:00:53,930 - INFO - Gemini parsed PDF successfully: {"date": "2024-05-12", "amount": 330.00, "description": "Payment for Join Main Flow Training & Internship", "vendor": "Main Flow Services"}
+2025-07-31 20:00:55,328 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:00:56,479 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH8--1KsbBtL6XH2BWUQaUf3sz5oLM1x7ZMf6WjCzi28HhQ2Qbi3nJzt2F6AAKJjQpEqU-lQMeRgsTjeTl3v2mKVcYA9-_kPgqQRU2mPXMgk&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:00:56,481 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:01:00,031 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:01:00,034 - INFO - AFC remote call 1 is done.
+2025-07-31 20:01:00,035 - INFO - Gemini parsed PDF successfully: {
+  "date": "2025-07-30",
+  "amount": 1250.00,
+  "description": "Office Supplies",
+  "vendor": "Amazon"
+}
+2025-07-31 20:01:01,960 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:01:03,599 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH886rXm4qwTwJD_9QYhZddSkieU-1ZTJHKaRfM6dtEDQe0Bx98Ev-yxsz3AArgzC91dqCogmTi-hidEhJnTpIQYVyA6Y9pnq5WueymZ9LQ&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:01:03,600 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:01:06,289 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:01:06,291 - INFO - AFC remote call 1 is done.
+2025-07-31 20:01:06,291 - INFO - Gemini parsed PDF successfully: {"date": "2025-07-30", "amount": 1250.00, "description": "Office Supplies", "vendor": "Amazon"}
+2025-07-31 20:03:00,919 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-31 20:03:03,554 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:03:05,135 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH88khjTWVYbw1QU82lsd8EbeqVxrxTXznJ4MJI4kiaWo_R2sR5TItUxPkcvqHdHPkZv5OtKP03vi-yDQEdu5pVnVo_E-ALCEZamSuUcetg&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:03:05,137 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:03:09,612 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:03:09,619 - INFO - AFC remote call 1 is done.
+2025-07-31 20:03:09,619 - INFO - Gemini parsed PDF successfully: {"date": "2024-05-12", "amount": 330.00, "description": "Payment for Join Main Flow Training & Internship", "vendor": "Main Flow Services"}
+2025-07-31 20:03:10,968 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:03:12,039 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH89NrydcU_8wD_eGPcDklyRfXPSWkM1PhTWVMXE_RjRHc_oTjwSP8xpye79jfI0KMp0m3V_nxnzOmiTSiAHXdHzur6Ri0I15OSsG0gAWbA&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:03:12,041 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:03:15,362 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:03:15,366 - INFO - AFC remote call 1 is done.
+2025-07-31 20:03:15,366 - INFO - Gemini parsed PDF successfully: {"date": "2025-07-30", "amount": 1250.00, "description": "Office Supplies", "vendor": "Amazon"}
+2025-07-31 20:03:16,715 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:03:18,358 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH89-aYqOQ6d17Cyvit71MjnbdbKM9hgpCDQr8BIMUlSdzUjm4qLO3F9H2p11dIq9pLIf9t6-w3-bEycGmncmu2hU1K529CkF19tjJNfKWQw&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:03:18,360 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:03:21,128 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:03:21,129 - INFO - AFC remote call 1 is done.
+2025-07-31 20:03:21,130 - INFO - Gemini parsed PDF successfully: {"date": "2025-07-30", "amount": 1250.00, "description": "Office Supplies", "vendor": "Amazon"}
+2025-07-31 20:11:14,407 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-31 20:11:17,923 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:11:18,900 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH8-yYpfRyylsPvdA6H045cJWSG402jSSv0fvBh5OMT5Ia_VJJNhpKZdaXrb_OBabiF7D3xu1MS65W5GVgcbB8UFKLe3K5zXpxXmHs-2VP54&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:11:18,901 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:11:23,146 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:11:23,150 - INFO - AFC remote call 1 is done.
+2025-07-31 20:11:23,150 - INFO - Gemini parsed PDF successfully: {"date": "2024-05-12", "amount": 330.00, "description": "Join Main Flow Training & Internship", "vendor": "Main Flow Services"}
+2025-07-31 20:11:24,476 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:11:25,501 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH89CSTT1p63dHozNJmh977tYvqsto_LVt8-frLVRH_CCzj8yqg1Kpn7t0-8rkWiXcDxI8RetYqPG9dLuaBOO20sP7rLFEoOlc_le8AK_4g&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:11:25,502 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:11:29,748 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:11:29,751 - INFO - AFC remote call 1 is done.
+2025-07-31 20:11:29,752 - INFO - Gemini parsed PDF successfully: {
+  "date": "2025-07-30",
+  "amount": 1250.00,
+  "description": "Office Supplies",
+  "vendor": "Amazon"
+}
+2025-07-31 20:11:31,338 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files "HTTP/1.1 200 OK"
+2025-07-31 20:11:32,297 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/upload/v1beta/files?upload_id=ABgVH8_7K33yiiAfYa74rPuG9w9T9Nj09whM9jrTvyx6UA2pyryMkrm6MuI_Z3Ku8Cx72sWFe3WSIeYtZViXoLibzmFsATQ8Lc82LQdei_yOEqg&upload_protocol=resumable "HTTP/1.1 200 OK"
+2025-07-31 20:11:32,298 - INFO - AFC is enabled with max remote calls: 10.
+2025-07-31 20:11:34,935 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-31 20:11:34,940 - INFO - AFC remote call 1 is done.
+2025-07-31 20:11:34,941 - INFO - Gemini parsed PDF successfully: {"date": "2025-07-30", "amount": 1250.00, "description": "Office Supplies", "vendor": "Amazon"}
+2025-07-31 20:35:28,356 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-31 20:43:01,373 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-31 20:45:41,552 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-07-31 20:45:44,843 - INFO - Skipping message 19860d0a2a8a4615
+2025-07-31 20:45:44,843 - INFO - Skipping message 1985a67c2fa5e9c8
+2025-07-31 20:45:44,843 - INFO - Skipping message 198598b81ebe46f2
