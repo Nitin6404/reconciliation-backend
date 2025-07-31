@@ -21,7 +21,13 @@ def reconcile_transactions(bank_txns, db: Session):
                     "date": l.date,
                     "description": l.description,
                     "amount": l.amount,
-                    "status": "Matched"
+                    "status": "Matched",
+                    "vendor": l.vendor,
+                    "transaction_id": l.transaction_id,
+                    "payment_method": l.payment_method,
+                    "last_digits": l.last_digits,
+                    "currency": l.currency,
+                    "message_id": l.message_id
                 })
                 only_in_bank.remove(b)
                 found_match = True
@@ -31,7 +37,13 @@ def reconcile_transactions(bank_txns, db: Session):
                 "date": l.date,
                 "description": l.description,
                 "amount": l.amount,
-                "status": "Only in Ledger"
+                "status": "Only in Ledger",
+                "vendor": l.vendor,
+                "transaction_id": l.transaction_id,
+                "payment_method": l.payment_method,
+                "last_digits": l.last_digits,
+                "currency": l.currency,
+                "message_id": l.message_id
             })
 
     for b in only_in_bank:
@@ -39,7 +51,13 @@ def reconcile_transactions(bank_txns, db: Session):
             "date": b['date'],
             "description": b['description'],
             "amount": b['amount'],
-            "status": "Only in Bank"
+            "status": "Only in Bank",
+            "vendor": b.get('vendor'),
+            "transaction_id": b.get('transaction_id'),
+            "payment_method": b.get('payment_method'),
+            "last_digits": b.get('last_digits'),
+            "currency": b.get('currency'),
+            "message_id": b.get('message_id')
         })
 
     return matched + only_in_ledger
